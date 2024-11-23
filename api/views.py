@@ -27,17 +27,12 @@ class TodoView(APIView):
 		try:
 			data = request.data
 			serializer = TaskSerializer(data=data)
-			if serializer.is_valid(raise_exception=True):
-				serializer.save()
-				return Response({
-					'status': 'success',
-					'data': serializer.data
-				}, status=status.HTTP_201_CREATED)
-			else:
-				return Response({
-					'status': 'error',
-					'data': serializer.errors
-				}, status=status.HTTP_400_BAD_REQUEST)
+			serializer.is_valid(raise_exception=True)
+			serializer.save()
+			return Response({
+				"status":"success",
+				"data":serializer.data
+			}, status=status.HTTP_200_OK)
 		except Exception as e:
 			return Response({
 				"Error":str(e)
@@ -57,17 +52,12 @@ class TodoView(APIView):
 				}, status=status.HTTP_400_BAD_REQUEST)
 
 			serializer = TaskSerializer(task, data=data, partial=True)
-			if serializer.is_valid(raise_exception=True):
-				serializer.save()
-				return Response({
-					'status': 'success',
-					'data': serializer.data
-				}, status=status.HTTP_200_OK)
-			else:
-				return Response({
-					'status': 'error',
-					'data': serializer.errors
-				}, status=status.HTTP_400_BAD_REQUEST)
+			serializer.is_valid(raise_exception=True)
+			serializer.save()
+			return Response({
+				'status': 'success',
+				'data': serializer.data
+			}, status=status.HTTP_200_OK)
 		except Exception as e:
 			return Response({
 				"Error":str(e)
@@ -87,17 +77,12 @@ class TodoView(APIView):
 				}, status=status.HTTP_400_BAD_REQUEST)
 
 			serializer = TaskSerializer(task, data=data)
-			if serializer.is_valid(raise_exception=True):
-				serializer.save()
-				return Response({
-					'status': 'success',
-					'data': serializer.data
-				}, status=status.HTTP_200_OK)
-			else:
-				return Response({
-					'status': 'error',
-					'data': serializer.errors
-				}, status=status.HTTP_400_BAD_REQUEST)
+			serializer.is_valid(raise_exception=True)
+			serializer.save()
+			return Response({
+				'status': 'success',
+				'data': serializer.data
+			}, status=status.HTTP_200_OK)
 		except Exception as e:
 			return Response({
 				"Error":str(e)
